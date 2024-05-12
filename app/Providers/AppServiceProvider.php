@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Listeners\SocketListener;
+use Laravel\Reverb\Events\MessageReceived;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+            /**
+             * Default event for Reverb
+             */
+            //MessageReceived::class,
+            SocketListener::class
+        );
     }
 }
